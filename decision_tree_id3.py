@@ -88,9 +88,11 @@ class DecisionTree(object):
     def create_tree(self, dataset, labels):
         """创建决策树"""
         class_list = [example[-1] for example in dataset]  # 类别: 男或者女
-        if class_list.count(class_list[0]) == len(class_list):  # 所有数据为同一类
+        if class_list.count(class_list[0]) == len(class_list):
+            # 分割出的所有样本属于同一类  停止递归
             return class_list[0]
         if len(dataset[0]) == 1:  # 数据只有类别，输出最多的类别
+            # 由于每次分割消耗一个feature，当没有feature的时候停止递归，返回当前样本集中大多数sample的label
             return self.majority_count(class_list)
         best_feature = self.choose_best_feature_to_spilt(dataset)  # 选择最优特征
         best_feature_label = labels[best_feature]
