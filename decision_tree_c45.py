@@ -8,6 +8,7 @@ C4.5 处理连续特征是先将特征取值排序，以连续两个值中间值
 """
 from math import log
 import operator
+import treePlotter
 
 
 class DecisionTree(object):
@@ -123,7 +124,7 @@ class DecisionTree(object):
         输出：决策结果
         描述：跑决策树
         """
-        firstStr = list(inputTree.keys)[0]
+        firstStr = list(inputTree.keys())[0]
         secondDict = inputTree[firstStr]
         featureIndex = featureLabel.index(firstStr)
         for key in secondDict.keys():
